@@ -115,7 +115,7 @@ def snre_highenergy(
 
     fdata_ = numpy.insert(fdata_, 0, "inf")
     pv01_ = numpy.insert(pv01_, 0, "inf")
-    pvblk_ = numpy.insert(pvblk_, 0, "inf") # TODO: unused
+    pvblk_ = numpy.insert(pvblk_, 0, "inf")  # TODO: unused
 
     # energy estimation
     e = numpy.zeros(nfr10, dtype="float64")
@@ -306,7 +306,9 @@ def snre_vad(
                 n_stop = i
             sign_pv = 0
             data_i = fdata_[
-                range((n_start - 1) * fsh10 + 1, (n_stop - 1) * fsh10 + flen - fsh10 + 1)
+                range(
+                    (n_start - 1) * fsh10 + 1, (n_stop - 1) * fsh10 + flen - fsh10 + 1
+                )
             ]
             data_i = numpy.insert(data_i, 0, "inf")
 
@@ -502,7 +504,8 @@ def pitchblockdetect(pv01, pitch, nfr10, opts):
                     pitch_seg[j - n_start] = pitch[j]
 
                 if (
-                    sum(numpy.abs(numpy.round(pitch_seg - numpy.average(pitch_seg)))) == 0
+                    sum(numpy.abs(numpy.round(pitch_seg - numpy.average(pitch_seg))))
+                    == 0
                 ) and (n_stop - n_start + 1 >= 10):
                     pv01_[range(n_start, n_stop)] = 0
                     #
